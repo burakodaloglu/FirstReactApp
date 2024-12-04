@@ -5,37 +5,44 @@ import {
   StyleSheet,
   TextInput,
   Pressable,
+  Image,
 } from "react-native";
 import React, { useState } from "react";
+import Loading from "../src/components/Loading";
 
 export default function App() {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [result, setResult] = useState("");
-
-  console.log(name);
-  console.log(lastName);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <View style={styles.container}>
+      <Image
+        source={require("../assets/images/login.png")}
+        style={styles.image}
+      />
+
       <Text>Welcome {result}</Text>
-      <Text>Name</Text>
+      <Text>E-mail</Text>
       <TextInput
-        placeholder="Enter your Name"
+        inputMode="email"
+        placeholder="Enter your E-mail"
         style={styles.textInputStyle}
         onChangeText={setName}
         value={name}
       />
 
-      <Text>Last Name</Text>
+      <Text>Password</Text>
       <TextInput
-        placeholder="Enter your Last Name"
+        secureTextEntry={true}
+        placeholder="Enter your Password"
         style={styles.textInputStyle}
         onChangeText={setLastName}
         value={lastName}
       />
       <Pressable
-        onPress={() => setResult(name + " " + lastName)}
+        onPress={() => setIsLoading(true)}
         style={({ pressed }) => [
           {
             backgroundColor: pressed ? "gray" : "lightblue",
@@ -45,6 +52,10 @@ export default function App() {
       >
         <Text style={styles.buttonText}>Save</Text>
       </Pressable>
+
+      {isLoading ? (
+        <Loading changeIsLoading={() => setIsLoading(false)} />
+      ) : null}
     </View>
   );
 }
@@ -74,5 +85,10 @@ const styles = StyleSheet.create({
   buttonText: {
     fontWeight: "bold",
     color: "white",
+  },
+  image: {
+    marginBottom: 20,
+    width: 200,
+    height: 200,
   },
 });

@@ -15,15 +15,14 @@ import CustomButton from "../components/CustomButton";
 const LoginPage = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 30 }}>Welcome {result}</Text>
+      <Text style={{ fontSize: 30 }}>Welcome</Text>
 
       <Image
-        source={require("../../assets/images/login.png")}
+        source={require("../../assets/images/signIn.png")}
         style={styles.image}
       />
 
@@ -65,7 +64,9 @@ const LoginPage = ({ navigation }) => {
     </View>
   );
 };
+
 export default LoginPage;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
   },
   image: {
     margin: 20,
-    width: 200,
-    height: 200,
+    width: 150,
+    height: 150,
   },
 });
